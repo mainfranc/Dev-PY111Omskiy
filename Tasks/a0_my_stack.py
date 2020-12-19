@@ -11,16 +11,16 @@ def push(elem: Any) -> None:
     :param elem: element to be pushed
     :return: Nothing
     """
-    print(elem)
+    list.append(elem)
     return None
 
 
 def pop() -> Any:
     """
     Pop element from the top of the stack. If not elements - should return None.
-
     :return: popped element
     """
+
     return None
 
 
