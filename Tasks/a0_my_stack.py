@@ -13,7 +13,7 @@ def push(elem: Any) -> None:
     """
     global stack
     stack.append(elem)
-    # some change
+    # some another change
     return None
 
 
