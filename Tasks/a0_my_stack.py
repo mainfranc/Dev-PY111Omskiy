@@ -2,7 +2,7 @@
 My little Stack
 """
 from typing import Any
-
+stack = []
 
 def push(elem: Any) -> None:
     """
@@ -11,7 +11,8 @@ def push(elem: Any) -> None:
     :param elem: element to be pushed
     :return: Nothing
     """
-    list.append(elem)
+    global stack
+    stack.append(elem)
     return None
 
 
@@ -20,8 +21,10 @@ def pop() -> Any:
     Pop element from the top of the stack. If not elements - should return None.
     :return: popped element
     """
-
-    return None
+    global stack
+    elem = stack[len(stack - 1)]
+    stack.pop()
+    return elem
 
 
 def peek(ind: int = 0) -> Any:
