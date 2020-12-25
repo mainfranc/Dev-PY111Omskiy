@@ -11,8 +11,22 @@ def ex(x: Union[int, float]) -> float:
     :param x: x value
     :return: e^x value
     """
-    print(x)
-    return 0
+    result = 0
+    for i in range(10):
+        result += x ** i / fact_(i)
+    return result
+
+
+def fact_(n):
+    if n in fact_.cache.keys():
+        return fact_.cache[n]
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+
+fact_.cache = {}
 
 
 def sinx(x: Union[int, float]) -> float:
@@ -22,5 +36,7 @@ def sinx(x: Union[int, float]) -> float:
     :param x: x value
     :return: sin(x) value
     """
-    print(x)
-    return 0
+    result = x
+    for i in range(3, 15, 2):
+        result += (-1) ** ((i - 1) / 2) * (x ** i) / fact_(i)
+    return result
