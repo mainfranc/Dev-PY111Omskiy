@@ -25,10 +25,7 @@ def dequeue() -> Any:
     """
     global prior_queue
     if prior_queue:
-        priorities_set = set()
-        for i in prior_queue:
-            priorities_set.add(i[1])
-        max_priority = min(priorities_set)
+        max_priority = min(map(lambda x: x[1], prior_queue))
         for i in range(len(prior_queue)):
             if prior_queue[i][1] == max_priority:
                 el_to_return =  prior_queue[i][0]
