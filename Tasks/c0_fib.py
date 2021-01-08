@@ -5,17 +5,23 @@ def fib_recursive(n: int) -> int:
     :param n: number of item
     :return: Fibonacci number
     """
+    cache = {}
+    result = fib_rec_calc(n, cache)
+    cache = {}
+    return result
+
+def fib_rec_calc(n: int, cache) -> int:
     if n < 1:
         raise ValueError()
     if n == 1 or n == 2:
         return 1
-    if fib_recursive.cache.get(n, 0):
-        return fib_recursive.cache[n]
-    result =  fib_recursive(n-1) + fib_recursive(n-2)
-    fib_recursive.cache[n] = result
+    if cache.get(n, 0):
+        return cache[n]
+    result =  fib_rec_calc(n-1, cache) + fib_rec_calc(n-2, cache)
+    cache[n] = result
     return result
 
-fib_recursive.cache = {}
+
 
 
 def fib_iterative(n: int) -> int:
@@ -30,8 +36,9 @@ def fib_iterative(n: int) -> int:
 
     results = [0, 1]
     for i in range(0, n - 1):
-        last_res_ind = len(results) - 1
-        results.append(results[last_res_ind] + results[last_res_ind - 1])
+        last_member = results[-1] + results[-2]
+        results[-2] = results[-1]
+        results[-1] = last_member
     return results[len(results) - 1]
 
 
