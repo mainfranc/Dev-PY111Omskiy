@@ -43,31 +43,21 @@ def remove(key: int) -> Optional[Tuple[int, Any]]:
     :return: deleted (key, value) pair or None
     """
     global ex_tree
-    try:
-        find(key)
-    except KeyError:
-        return None
+    result = None
 
-    curr_node = ex_tree
-    parent_node = {}
-    while curr_node:
-        if curr_node['key'] == key:
-            break
-        elif curr_node['key'] < key:
-            parent_node = curr_node
-            curr_node = curr_node['right']
-        else:
-            parent_node = curr_node
-            curr_node = curr_node['left']
+    curr_node = return_node(key)
+    if not curr_node: return None
 
-    result = (curr_node['key'], curr_node['value'])
     if not any((curr_node['left'], curr_node['right'])):
+        result = (curr_node['key'], curr_node['value'])
         curr_node = {}
     else:
         if not all((curr_node['left'], curr_node['right'])):
-            dir = 'left' if curr_node['left'] else 'right'
-            curr_node = curr_node[dir]
+            result = (curr_node['key'], curr_node['value'])
+            dir_ = 'left' if curr_node['left'] else 'right'
+            curr_node = curr_node[dir_]
         else:
+            result = (curr_node['key'], curr_node['value'])
             new_min_in_right = curr_node['right']
             while new_min_in_right['left']:
                 new_min_in_right = new_min_in_right['left']
@@ -84,15 +74,11 @@ def find(key: int) -> Optional[Any]:
     :param key: key for search in the BST
     :return: value associated with the corresponding key
     """
-    curr_node = ex_tree
-    while curr_node:
-        if curr_node['key'] == key:
-            return curr_node['value']
-        elif curr_node['key'] < key:
-            curr_node = curr_node['right']
-        else:
-            curr_node = curr_node['left']
-    raise KeyError("key not found")
+    curr_node = return_node(key)
+    if curr_node:
+        return curr_node['value']
+    else:
+        raise KeyError("key not found")
 
 
 def clear() -> None:
@@ -103,3 +89,14 @@ def clear() -> None:
     """
     ex_tree.clear()
     return None
+
+
+def return_node(key):
+    curr_node = ex_tree
+    while curr_node:
+        if curr_node['key'] == key:
+            return curr_node
+        elif curr_node['key'] < key:
+            curr_node = curr_node['right']
+        else:
+            curr_node = curr_node['left']
