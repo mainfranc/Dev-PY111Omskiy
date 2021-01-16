@@ -13,14 +13,14 @@ def bfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     """
     v_queue = queue.Queue()
     v_queue.put(start_node)
-    visited_nodes = [start_node]
+    v_nodes = [start_node]
 
     while True:
         legacies = v_queue.get()
 
         for node in g[legacies]:
-            if not (node in visited_nodes):
-                visited_nodes.append(node)
+            if not (node in v_nodes):
+                v_nodes.append(node)
                 v_queue.put(node)
-        if not v_queue.queue: return visited_nodes
+        if not v_queue.queue: return v_nodes
 
