@@ -1,8 +1,3 @@
-"""
-You can do it either with networkx ('cause tree is a graph)
-or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
-"""
-
 from typing import Any, Optional, Tuple
 # import networkx as nx
 ex_tree = {}
@@ -108,50 +103,3 @@ def clear() -> None:
     """
     ex_tree.clear()
     return None
-
-
-if __name__ == '__main__':
-    ex_tree = {'key': 42,
-               'value': 'some val',
-               'left': {
-                   'key': 21,
-                   'value': 'some val2',
-                   'left': {
-                       'key': 12,
-                       'value': 'some val3',
-                       'left': {
-
-                       },
-                       'right': {
-
-                       }
-                   },
-                   'right': {
-
-                   }
-               },
-               'right': {
-                   'key': 64,
-                   'value': 'some val4',
-                   'left': {
-                       'key': 56,
-                       'value': 'some val5',
-                       'left': {
-
-                       },
-                       'right': {
-
-                       }
-                   },
-                   'right': {
-                       'key': 78,
-                       'value': 'some val6',
-                       'left': {
-
-                       },
-                       'right': {
-
-                       }
-                   }
-               }
-               }
