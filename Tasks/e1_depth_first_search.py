@@ -23,6 +23,5 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
                 if not (node in v_nodes):
                     v_stack.append(node)
             break
-
-
-        if not v_stack: return v_nodes
+        if not v_stack:
+            return v_nodes
