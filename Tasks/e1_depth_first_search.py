@@ -11,6 +11,7 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     :return: list of nodes in the visited order
     """
     v_stack = [start_node]
+    total_result = []
     v_nodes = []
 
     while True:
