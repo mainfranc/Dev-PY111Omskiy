@@ -20,7 +20,7 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
         v_nodes.append(legacies)
 
         for node in g[legacies]:
-            if not (node in v_nodes):
+            if  node not in v_nodes:
                 v_stack.append(node)
         if not v_stack:
             return v_nodes
