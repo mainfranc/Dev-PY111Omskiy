@@ -10,7 +10,8 @@ def _prefix_fun(prefix_str: str) -> List[int]:
     """
     result = [0 for i in range(len(prefix_str))]
     for i in range(1, len(prefix_str) + 1):
-        addition = [j if prefix_str[:j] == prefix_str[i - j:i] else 0 for j in range(1, i)]
+        # addition = [j if prefix_str[:j] == prefix_str[i - j:i] else 0 for j in range(1, i)]
+        addition = [j if compare_string_parts(prefix_str, j, i - j) else 0 for j in range(1, i)]
         if addition: result[i - 1] = max(addition)
     return result
 
@@ -35,9 +36,15 @@ def kmp_algo(inp_string: str, substr: str) -> Optional[int]:
                 inp_i -= lst_mapping[sub_i]
                 break
         inp_i += 1
-    print(inp_string, substr, _prefix_fun)
     return None
 
+
+def compare_string_parts(in_str, i2, j1):
+    marker = True
+    for i in range(i2):
+        if in_str[i] != in_str[j1 + i]:
+            marker = False
+    return marker
 
 if __name__ == '__main__':
     print(_prefix_fun('abcabca'))
